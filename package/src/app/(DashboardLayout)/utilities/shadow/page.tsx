@@ -1,14 +1,24 @@
-import React from "react";
+import CardBox from "@/app/components/shared/CardBox";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 
 const page = () => {
+  const BCrumb = [
+    {
+      to: "/",
+      title: "Home",
+    },
+    {
+      title: "Shadow",
+    },
+  ];
   return (
     <>
-      <div className="rounded-xl dark:shadow-dark-md shadow-md bg-white dark:bg-darkgray p-6 relative w-full break-words">
-        <h5 className="card-title">Shadow</h5>
-        <div className="mt-6">
+      <BreadcrumbComp title="Shadow" items={BCrumb} />
+      <CardBox>
+        <div>
           <div className="grid grid-cols-12 gap-30">
             <div className="lg:col-span-3 md:col-span-6 col-span-12">
-              <div className="shadow-none bg-primary rounded-xl h-32 text-center flex justify-center items-center text-white text-xl ">
+              <div className="shadow-none bg-primary rounded-xl h-32 text-center flex justify-center items-center text-white text-xl">
                 1
               </div>
             </div>
@@ -49,7 +59,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </div>
+      </CardBox>
     </>
   );
 };

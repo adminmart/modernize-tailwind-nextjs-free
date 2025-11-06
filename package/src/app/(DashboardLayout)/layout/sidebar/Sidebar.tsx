@@ -1,72 +1,155 @@
-"use client";
+import Link from 'next/link'
+import Image from 'next/image'
+import { useTheme } from 'next-themes'
+import { usePathname } from 'next/navigation'
+import SidebarContent from './Sidebaritems'
+import SimpleBar from 'simplebar-react'
+import { Icon } from '@iconify/react'
+import FullLogo from '../shared/logo/FullLogo'
+import { Button } from '@/components/ui/button'
+import {
+  AMLogo,
+  AMMenu,
+  AMMenuItem,
+  AMSidebar,
+  AMSubmenu,
+} from 'tailwind-sidebar'
+import 'tailwind-sidebar/styles.css'
 
-import React, { useContext } from "react";
-import { Button, Sidebar, Tooltip } from "flowbite-react";
-import SidebarContent from "./Sidebaritems";
-import NavItems from "./NavItems";
-import SimpleBar from "simplebar-react";
-import { Icon } from "@iconify/react";
-import Image from "next/image";
-import FullLogo from "../shared/logo/FullLogo";
-import rocket from "/public/images/backgrounds/rocket.png"
-import Link from "next/link";
-const SidebarLayout = () => {
+const renderSidebarItems = (
+  items: any[],
+  currentPath: string,
+  onClose?: () => void,
+  isSubItem: boolean = false
+) => {
+  return items.map((item, index) => {
+    const isSelected = currentPath === item?.url
+    const IconComp = item.icon || null
+
+    const iconElement = IconComp ? (
+      <Icon icon={IconComp} height={21} width={21} />
+    ) : (
+      <Icon icon={'ri:checkbox-blank-circle-line'} height={9} width={9} />
+    )
+
+    // Heading
+    if (item.heading) {
+      return (
+        <div className='mb-1' key={item.heading}>
+          <AMMenu
+            subHeading={item.heading}
+            ClassName='hide-menu leading-21 text-charcoal font-bold uppercase text-xs dark:text-darkcharcoal'
+          />
+        </div>
+      )
+    }
+
+    // Submenu
+    if (item.children?.length) {
+      return (
+        <AMSubmenu
+          key={item.id}
+          icon={iconElement}
+          title={item.name}
+          ClassName='mt-0.5 text-link dark:text-darklink'>
+          {renderSidebarItems(item.children, currentPath, onClose, true)}
+        </AMSubmenu>
+      )
+    }
+
+    // Regular menu item
+    const linkTarget = item.url?.startsWith('https') ? '_blank' : '_self'
+
+    const itemClassNames = isSubItem
+      ? `mt-0.5 text-link dark:text-darklink !hover:bg-transparent ${isSelected ? '!bg-transparent !text-primary' : ''
+      } !px-1.5`
+      : `mt-0.5 text-link dark:text-darklink`
+
+    return (
+      <div onClick={onClose} key={index}>
+        <AMMenuItem
+          key={item.id}
+          icon={iconElement}
+          isSelected={isSelected}
+          link={item.url || undefined}
+          target={linkTarget}
+          badge={!!item.isPro}
+          badgeColor='bg-lightsecondary'
+          badgeTextColor='text-secondary'
+          disabled={item.disabled}
+          badgeContent={item.isPro ? 'Pro' : undefined}
+          component={Link}
+          className={`${itemClassNames}`}>
+          <span className='truncate flex-1'>{item.title || item.name}</span>
+        </AMMenuItem>
+      </div>
+    )
+  })
+}
+
+const SidebarLayout = ({ onClose }: { onClose?: () => void }) => {
+  const pathname = usePathname()
+  const { theme } = useTheme()
+
+  // Only allow "light" or "dark" for AMSidebar
+  const sidebarMode = theme === 'light' || theme === 'dark' ? theme : undefined
+
   return (
-    <>
-      <div className="xl:block hidden">
-        <div className="flex">
-          <Sidebar
-            className="fixed menu-sidebar bg-white dark:bg-dark z-[3]"
-            aria-label="Sidebar with multi-level dropdown example"
-          >
-            <div className={`px-6 flex items-center brand-logo overflow-hidden`}>
-              <FullLogo />
+    <AMSidebar
+      collapsible='none'
+      animation={true}
+      showProfile={false}
+      width={'270px'}
+      showTrigger={false}
+      mode={sidebarMode}
+      className='fixed left-0 top-0 border border-border dark:border-darkborder bg-white dark:bg-dark z-10 h-screen'>
+      {/* Logo */}
+      <div className='px-6 flex items-center brand-logo overflow-hidden'>
+        <AMLogo component={Link} href='/' img=''>
+          <FullLogo />
+        </AMLogo>
+      </div>
+
+      {/* Sidebar items */}
+
+      <SimpleBar className='h-[calc(100vh-100px)]'>
+        <div className='px-6'>
+          {SidebarContent.map((section, index) => (
+            <div key={index}>
+              {renderSidebarItems(
+                [
+                  ...(section.heading ? [{ heading: section.heading }] : []),
+                  ...(section.children || []),
+                ],
+                pathname,
+                onClose
+              )}
             </div>
+          ))}
 
-            <SimpleBar className="h-[calc(100vh_-_100px)]">
-              <Sidebar.Items className={`px-6`}>
-                <Sidebar.ItemGroup className="sidebar-nav">
-                  {SidebarContent.map((item, index) => (
-                    <React.Fragment key={index}>
-                     <h5 className="text-link font-bold text-xs dark:text-darklink caption">
-                        <span className="hide-menu leading-21">{item.heading?.toUpperCase()}</span>
-                        <Icon
-                        icon="tabler:dots"
-                        className="text-ld block mx-auto leading-6 dark:text-opacity-60 hide-icon"
-                        height={18}
-                      />
-                      </h5>
-
-                      {item.children?.map((child, index) => (
-                        <React.Fragment key={child.id && index}>
-                            <NavItems item={child} />
-                        </React.Fragment>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </Sidebar.ItemGroup>
-              </Sidebar.Items>
-              {/* Offer Banner */}
-            <div className="mt-9 px-6">
-            <div className="flex w-full bg-lightprimary p-6">
-                <div className="lg:w-1/2 w-full">
-                 <h5 className="text-base text-link dark:text-darklink">
-                  Haven't Account?
-                 </h5>
-                 <Button size={"xs"} color={"primary"} as={Link} href="/auth/register" className="whitespace-nowrap mt-2 text-[13px]" >Sign Up</Button>
-                </div>
-                <div className="lg:w-1/2 w-full -mt-4 ml-[26px] scale-[1.2] shrink-0">
-                <Image src={rocket} alt="rocket" />
-                </div>
+          {/* Promo Section */}
+          <div className='mt-9  overflow-hidden'>
+            <div className='flex w-full bg-lightprimary rounded-lg p-6'>
+              <div className='lg:w-1/2 w-full'>
+                <h5 className='text-base text-charcoal'>Haven't Account?</h5>
+                <Button asChild>
+                  <Link href="/auth/register" className='whitespace-nowrap mt-2 text-[13px]'>Sign up</Link>
+                </Button>
+              </div>
+              <div className='lg:w-1/2 w-full -mt-4 ml-[26px] scale-[1.2] shrink-0'>
+                <Image
+                  src={'/images/backgrounds/rocket.png'}
+                  alt='rocket'
+                  width={100}
+                  height={100}
+                />
               </div>
             </div>
-            </SimpleBar>
-
-          </Sidebar>
+          </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </SimpleBar>
+    </AMSidebar>
+  )
+}
 
-export default SidebarLayout;
+export default SidebarLayout

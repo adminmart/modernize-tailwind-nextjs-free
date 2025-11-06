@@ -1,5 +1,4 @@
 "use client"
-import { Button, Select } from "flowbite-react"
 import dynamic from "next/dynamic";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import CardBox from "../shared/CardBox";
@@ -9,18 +8,18 @@ const YearlyBreakup = () => {
 
     const ChartData: any = {
         series: [
-          38, 40, 25
+            38, 40, 25
         ],
         color: "#adb5bd",
-        labels: ["2023", "2022", "2024"],
+        labels: ["2023", "2025", "2024"],
         chart: {
             type: "donut",
             fontFamily: "inherit",
             foreColor: "#adb0bb",
-            height: 155,
-            offsetX:18,
+            height: 200,
+            offsetX: 18,
             toolbar: {
-              show: false,
+                show: false,
             },
         },
         plotOptions: {
@@ -45,36 +44,34 @@ const YearlyBreakup = () => {
         },
         colors: ["var(--color-primary)", "var(--color-lightprimary)", "var(--color-secondary)"],
 
-        responsive: [
-            {
-                breakpoint: 991,
-                options: {
-                    chart: {
-                        width: 120,
-                    },
-                },
-            },
-        ],
+
         tooltip: {
             theme: "dark",
             fillSeriesColor: false,
+            y: {
+                formatter: (val: number) => {
+                    return `$${val}K`;
+                }
+            }
         },
     };
     return (
         <>
             <CardBox>
                 <div className="grid grid-cols-12 ">
-                    <div className="lg:col-span-6 md:col-span-6 col-span-6">
-                        <h5 className="card-title mb-4 lg:whitespace-nowrap">Yearly Breakup</h5>
-                        <h4 className="text-xl mb-3">$36,358</h4>
-                        <div className="flex items-center mb-3 gap-2">
-                            <span className="rounded-full p-1 bg-lightsuccess dark:bg-darksuccess flex items-center justify-center ">
-                                <Icon icon="tabler:arrow-up-left" className="text-success" />
-                            </span>
-                            <p className="text-dark dark:text-darklink  mb-0">+9%</p>
-                            <p className=" dark:text-darklink mb-0 ">last year</p>
+                    <div className="flex flex-col lg:col-span-6 md:col-span-6 col-span-7">
+                        <div>
+                            <h5 className="card-title mb-4 lg:whitespace-nowrap">Yearly Breakup</h5>
+                            <h4 className="text-xl mb-2">$36,358</h4>
+                            <div className="flex items-center mb-3 gap-2">
+                                <span className="rounded-full p-1 bg-lightsuccess dark:bg-darksuccess flex items-center justify-center ">
+                                    <Icon icon="tabler:arrow-up-left" className="text-success" />
+                                </span>
+                                <p className="text-dark dark:text-darklink  mb-0">+9%</p>
+                                <p className="dark:text-darklink mb-0 ">last year</p>
+                            </div>
                         </div>
-                        <div className="flex gap-4 items-center">
+                        <div className="flex flex-wrap gap-4 items-center mt-4">
                             <div className="flex items-center">
                                 <Icon icon="tabler:point-filled" className="text-primary text-xl me-1" />
                                 <span className="text-xs  dark:text-darklink">2023</span>
@@ -83,17 +80,21 @@ const YearlyBreakup = () => {
                                 <Icon icon="tabler:point-filled" className="text-secondary text-xl me-1" />
                                 <span className="text-xs  dark:text-darklink">2024</span>
                             </div>
+                            <div className="flex items-center">
+                                <Icon icon="tabler:point-filled" className="text-lightprimary text-xl me-1" />
+                                <span className="text-xs  dark:text-darklink">2025</span>
+                            </div>
                         </div>
                     </div>
                     <div className="lg:col-span-6 md:col-span-6 col-span-4">
                         <div className="flex justify-center">
-                        <Chart
-                 options={ChartData}
-                 series={ChartData.series}
-                 type="donut"
-                 height="360px"
-                 width={"100%"}
-               />
+                            <Chart
+                                options={ChartData}
+                                series={ChartData.series}
+                                type="donut"
+                                height={200}
+                                width={180}
+                            />
                         </div>
                     </div>
                 </div>

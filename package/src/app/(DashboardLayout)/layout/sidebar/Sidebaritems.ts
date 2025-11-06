@@ -1,34 +1,35 @@
+import { uniqueId } from 'lodash'
+
 export interface ChildItem {
-  id?: number | string;
-  name?: string;
-  icon?: any;
-  children?: ChildItem[];
-  item?: any;
-  url?: any;
-  color?: string;
-  disabled?:boolean,
-  subtitle?:string,
-  badge?:boolean,
-  badgeType?:string,
+  id?: number | string
+  name?: string
+  icon?: any
+  children?: ChildItem[]
+  item?: any
+  url?: any
+  color?: string
+  disabled?: boolean
+  subtitle?: string
+  badge?: boolean
+  badgeType?: string
+  isPro?: boolean
 }
 
 export interface MenuItem {
-  heading?: string;
-  name?: string;
-  icon?: any;
-  id?: number;
-  to?: string;
-  items?: MenuItem[];
-  children?: ChildItem[];
-  url?: any;
-  disabled?:boolean,
-  subtitle?:string,
-  badgeType?:string,
-  badge?:boolean,
+  heading?: string
+  name?: string
+  icon?: any
+  id?: number
+  to?: string
+  items?: MenuItem[]
+  children?: ChildItem[]
+  url?: any
+  disabled?: boolean
+  subtitle?: string
+  badgeType?: string
+  badge?: boolean
+  isPro?: boolean
 }
-
-
-import { uniqueId } from "lodash";
 
 const SidebarContent: MenuItem[] = [
   {
@@ -36,9 +37,38 @@ const SidebarContent: MenuItem[] = [
     children: [
       {
         name: "Dashboard",
-        icon: 'tabler:aperture',
+        icon: 'solar:widget-add-line-duotone',
         id: uniqueId(),
         url: "/",
+      },
+    ],
+  },
+  {
+    heading: 'AI',
+    children: [
+      {
+        name: 'Ai Table Builder',
+        icon: 'solar:server-linear',
+        id: uniqueId(),
+        url: 'https://tailwindbuilder.ai/table-builder',
+        isPro: false,
+
+      },
+      {
+        name: 'Ai Form Builder',
+        icon: 'solar:document-add-linear',
+        id: uniqueId(),
+        url: 'https://tailwindbuilder.ai/form-builder',
+        isPro: false,
+
+      },
+      {
+        id: uniqueId(),
+        name: 'Ai Chart Builder',
+        icon: 'solar:pie-chart-2-linear',
+        url: 'https://tailwindbuilder.ai/chart-builder',
+        isPro: false,
+
       },
     ],
   },
@@ -47,25 +77,25 @@ const SidebarContent: MenuItem[] = [
     children: [
       {
         name: "Typography",
-        icon: 'tabler:typography',
+        icon: 'solar:text-circle-outline',
         id: uniqueId(),
         url: "/utilities/typography",
       },
       {
         name: "Table",
-        icon: 'tabler:table',
+        icon: 'solar:server-linear',
         id: uniqueId(),
         url: "/utilities/table",
       },
       {
         name: "Form",
-        icon: 'tabler:brand-terraform',
+        icon: 'solar:document-add-linear',
         id: uniqueId(),
         url: "/utilities/form",
       },
       {
         name: "Shadow",
-        icon: 'tabler:layers-subtract',
+        icon: "solar:airbuds-case-charge-outline",
         id: uniqueId(),
         url: "/utilities/shadow",
       },
@@ -76,13 +106,13 @@ const SidebarContent: MenuItem[] = [
     children: [
       {
         name: "Login",
-        icon: 'tabler:login-2',
+        icon: "solar:login-2-linear",
         id: uniqueId(),
         url: "/auth/login",
       },
       {
         name: "Register",
-        icon: 'tabler:user-plus',
+        icon: "solar:shield-user-outline",
         id: uniqueId(),
         url: "/auth/register",
       },
@@ -93,20 +123,18 @@ const SidebarContent: MenuItem[] = [
     children: [
       {
         name: "Icons",
-        icon: 'tabler:mood-smile',
+        icon: "solar:sticker-smile-circle-outline",
         id: uniqueId(),
         url: "/icons/tabler",
       },
       {
         name: "Sample Page",
-        icon: 'tabler:aperture',
+        icon: "solar:notes-minimalistic-outline",
         id: uniqueId(),
         url: "/sample-page",
       },
     ],
-  },
+  }
+]
 
-
-];
-
-export default SidebarContent;
+export default SidebarContent

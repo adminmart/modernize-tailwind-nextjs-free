@@ -1,14 +1,10 @@
 import { Product } from "./Product"
-import product1 from "/public/images/products/s4.jpg"
-import product2 from "/public/images/products/s5.jpg"
-import product3 from "/public/images/products/s7.jpg"
-import product4 from "/public/images/products/s11.jpg"
 
 export const BestSeller = () => {
   const ProductsInfo = [
     {
       id: "product1",
-      photo: product1,
+      photo: '/images/products/s4.jpg',
       title: "Boat Headphone",
       price: 285,
       salesPrice: 375,
@@ -16,7 +12,7 @@ export const BestSeller = () => {
     },
     {
       id: "product2",
-      photo: product2,
+      photo: '/images/products/s5.jpg',
       title: "MacBook Air Pro",
       price: 675,
       salesPrice: 900,
@@ -24,7 +20,7 @@ export const BestSeller = () => {
     },
     {
       id: "product3",
-      photo: product3,
+      photo: '/images/products/s7.jpg',
       title: "Red Valvet Dress",
       price: 150,
       salesPrice: 200,
@@ -32,7 +28,7 @@ export const BestSeller = () => {
     },
     {
       id: "product4",
-      photo: product4,
+      photo: '/images/products/s11.jpg',
       title: "Cute Soft Teddybear",
       price: 285,
       salesPrice: 345,

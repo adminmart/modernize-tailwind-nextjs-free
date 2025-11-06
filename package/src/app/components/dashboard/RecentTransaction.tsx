@@ -10,7 +10,7 @@ export const RecentTransaction = () => {
             desc: "Payment received from John Doe of $385.90",
             isSale: false,
             borderColor: "border-primary",
-            isLastItem:false,
+            isLastItem: false,
         },
         {
             key: "timeline2",
@@ -18,7 +18,7 @@ export const RecentTransaction = () => {
             desc: "New sale recorded",
             isSale: true,
             borderColor: "border-info",
-            isLastItem:false,
+            isLastItem: false,
         },
         {
             key: "timeline3",
@@ -26,7 +26,7 @@ export const RecentTransaction = () => {
             desc: "Payment was made of $64.95 to Michael",
             isSale: false,
             borderColor: "border-success",
-            isLastItem:false,
+            isLastItem: false,
         },
         {
             key: "timeline4",
@@ -34,7 +34,7 @@ export const RecentTransaction = () => {
             desc: "New sale recorded",
             isSale: true,
             borderColor: "border-warning",
-            isLastItem:false,
+            isLastItem: false,
         },
         {
             key: "timeline5",
@@ -42,7 +42,7 @@ export const RecentTransaction = () => {
             desc: "New sale recorded",
             isSale: true,
             borderColor: "border-error",
-            isLastItem:false,
+            isLastItem: false,
         },
         {
             key: "timeline6",
@@ -50,13 +50,15 @@ export const RecentTransaction = () => {
             desc: "Payment Done",
             isSale: false,
             borderColor: "border-success",
-            isLastItem:true,
+            isLastItem: true,
         },
     ]
     return (
-        <CardBox className="">
-            <h5 className="card-title">Recent Transactions</h5>
-            <p className="card-subtitle">How to secure recent transactions</p>
+        <CardBox className="h-full w-full">
+            <div className="flex flex-col gap-1.5">
+                <h5 className="card-title">Recent Transactions</h5>
+                <p className="card-subtitle">How to secure recent transactions</p>
+            </div>
             <div className="mt-6">
                 {
                     timelineData.map((item) => {
@@ -65,8 +67,8 @@ export const RecentTransaction = () => {
                                 <div className="w-1/4 text-end">
                                     <span className="font-medium">{item.time}</span>
                                 </div>
-                                <div className={`relative ${item.isLastItem?"after:hidden":null} after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-border dark:after:bg-darkborder`}>
-                                    <div className="relative z-[1] w-7 h-7 flex justify-center items-center">
+                                <div className={`relative ${item.isLastItem ? "after:hidden" : null} after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-defaultBorder`}>
+                                    <div className="relative z-1 w-7 h-7 flex justify-center items-center">
                                         <div className={`h-3 w-3 rounded-full bg-transparent border-2 ${item.borderColor}`}></div>
                                     </div>
                                 </div>
