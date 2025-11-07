@@ -5,15 +5,15 @@
 </div>
 
 <h1 align="center">
-   <a href="https://adminmart.com/product/matdash-free-next-js-admin-template/?ref=56" target="_blank" align="center">
+   <a href="https://adminmart.com/product/modernize-free-tailwind-next-js-admin-dashboard/" target="_blank" align="center">
       Modernize Free Tailwind Next.js Admin Template 
    </a>
 </h1>
 
 <p>Download most useful and comprehensive 🚀 Free Next admin template built for developers 🛠</p>
 
-<a href="https://adminmart.com/product/matdash-free-next-js-admin-template/?ref=56" target="_blank">
-  <img src="https://adminmart.com/wp-content/uploads/2024/09/Matdash_nextjs_free.jpg" alt="Matdash next free" width="564px" height="395px">
+<a href="https://adminmart.com/product/modernize-free-tailwind-next-js-admin-dashboard/" target="_blank">
+  <img src="https://adminmart.com/wp-content/uploads/2025/11/Modernize_tailwind_564X395-4.jpg" alt="Modernize next free" width="564px" height="395px">
 </a>
 
 
@@ -118,7 +118,7 @@ The Pro Version of the **Modernize Tailwind Next.js Admin Template** comes packe
   </a>
 </div>
 
-[![Modernize Tailwind Next.js Admin Template Demo Screenshot](https://adminmart.com/wp-content/uploads/2025/01/matdash-nextjs-pro-preview.jpg)](https://adminmart.com/product/matdash-next-js-admin-dashboard-template/?ref=56)
+[![Modernize Tailwind Next.js Admin Template Demo Screenshot](https://adminmart.com/wp-content/uploads/2024/03/Modernize-Nextjs-Tailwind-nextjs_sd.webp)](https://adminmart.com/product/modernize-tailwind-nextjs-dashboard-template/)
 
 ---
 
